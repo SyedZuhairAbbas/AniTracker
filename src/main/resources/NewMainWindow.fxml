@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="rootPane"
+            prefHeight="700.0" prefWidth="1100.0"
+            style="-fx-background-color: #0f1117;"
+            stylesheets="@css/style.css"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.zuhair.animetracker.controllers.MainController">
+
+    <!-- SIDEBAR -->
+    <left>
+        <VBox prefWidth="200.0" spacing="10.0"
+              style="-fx-background-color: #0f1117;"
+              BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <Label styleClass="app-title" text="AniTrack"/>
+            <Button fx:id="dashboardBtn" text="Dashboard"
+                    styleClass="sidebar-btn"
+                    onAction="#dashboardBtnHandler"
+                    mnemonicParsing="false"/>
+            <Button fx:id="searchBtn" text="Search"
+                    styleClass="sidebar-btn"
+                    onAction="#searchBtnHandler"
+                    mnemonicParsing="false"/>
+            <Button fx:id="libraryBtn" text="Library"
+                    styleClass="sidebar-btn"
+                    onAction="#libraryBtnHandler"
+                    mnemonicParsing="false"/>
+        </VBox>
+    </left>
+
+    <!-- MAIN CONTENT -->
+    <center>
+        <StackPane style="-fx-background-color: #1a1d2e;" stylesheets="@css/style.css">
+            <children>
+
+                <!-- ==================== DASHBOARD PANE ==================== -->
+                <AnchorPane fx:id="dashboardPane" style="-fx-background-color: #1a1d2e;">
+                    <children>
+                        <HBox spacing="15.0"
+                              AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+                              AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+                            <padding>
+                                <Insets top="15" right="15" bottom="15" left="15"/>
+                            </padding>
+
+                            <!-- Left: Banner + Continue Watching -->
+                            <ScrollPane fx:id="dashboardScroll" fitToWidth="true" HBox.hgrow="ALWAYS"
+                                        style="-fx-background: #1a1d2e; -fx-background-color: #1a1d2e;">
+                                <content>
+                                    <VBox spacing="15.0">
+                                        <padding>
+                                            <Insets top="5" right="5" bottom="5" left="5"/>
+                                        </padding>
+
+                                        <!-- Banner -->
+                                        <HBox fx:id="bannerBox" prefHeight="180.0" minHeight="180.0"
+                                              style="-fx-background-color: linear-gradient(to right, #1a1d2e, #2a5298); -fx-background-radius: 12; -fx-padding: 20;">
+                                        </HBox>
+
+                                        <!-- Continue Watching -->
+                                        <Label text="Continue Watching" styleClass="section-label"/>
+                                        <FlowPane fx:id="continueWatchingPane" hgap="10.0" vgap="10.0" prefWrapLength="940"/>                                    </VBox>
+                                </content>
+                            </ScrollPane>
+
+                            <!-- Right: Top Airing Sidebar -->
+                            <VBox prefWidth="260.0" spacing="10.0"
+                                  style="-fx-background-color: #1e2130; -fx-background-radius: 10; -fx-padding: 12;">
+                                <Label text="Top Airing" styleClass="section-label"/>
+                                <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                                            style="-fx-background: #1e2130; -fx-background-color: #1e2130;">
+                                    <content>
+                                        <VBox fx:id="topAiringPane" spacing="8.0"/>
+                                    </content>
+                                </ScrollPane>
+                            </VBox>
+
+                        </HBox>
+                    </children>
+                </AnchorPane>
+
+                <!-- ==================== SEARCH PANE ==================== -->
+                <AnchorPane fx:id="searchPane" style="-fx-background-color: #1a1d2e;" visible="false">
+                    <children>
+                        <VBox AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+                              AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+
+                            <!-- Search Bar -->
+                            <HBox spacing="10.0">
+                                <padding>
+                                    <Insets top="10" right="10" bottom="10" left="10"/>
+                                </padding>
+                                <TextField fx:id="searchField" promptText="Search anime..."
+                                           styleClass="search-field" HBox.hgrow="ALWAYS"/>
+                                <Button fx:id="searchFieldBtn" text="Search"
+                                        styleClass="card-button"
+                                        onAction="#searchResults"
+                                        mnemonicParsing="false"/>
+                            </HBox>
+
+                            <!-- Results -->
+                            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                                        style="-fx-background: #1a1d2e; -fx-background-color: #1a1d2e;">
+                                <content>
+                                    <FlowPane fx:id="searchResults" hgap="10.0" vgap="10.0">
+                                        <padding>
+                                            <Insets top="10" right="10" bottom="10" left="10"/>
+                                        </padding>
+                                    </FlowPane>
+                                </content>
+                            </ScrollPane>
+
+                        </VBox>
+                    </children>
+                </AnchorPane>
+
+                <!-- ==================== LIBRARY PANE ==================== -->
+                <AnchorPane fx:id="libraryPane" style="-fx-background-color: #1a1d2e;" visible="false">
+                    <children>
+                        <HBox AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+                              AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+                              spacing="15.0">
+                            <padding>
+                                <Insets top="15" right="15" bottom="15" left="15"/>
+                            </padding>
+
+                            <!-- Left: Tabs + List -->
+                            <VBox HBox.hgrow="ALWAYS" spacing="10.0">
+
+                                <!-- Tab Buttons -->
+                                <HBox spacing="5.0">
+                                    <Button fx:id="watchingBtn" text="Watching"
+                                            styleClass="tab-btn"
+                                            onAction="#watchingHandler"
+                                            mnemonicParsing="false"/>
+                                    <Button fx:id="planToWatchBtn" text="Plan To Watch"
+                                            styleClass="tab-btn"
+                                            onAction="#planToWatchHandler"
+                                            mnemonicParsing="false"/>
+                                    <Button fx:id="completedBtn" text="Completed"
+                                            styleClass="tab-btn"
+                                            onAction="#completedHandler"
+                                            mnemonicParsing="false"/>
+                                    <Button fx:id="droppedBtn" text="Dropped"
+                                            styleClass="tab-btn"
+                                            onAction="#droppedHandler"
+                                            mnemonicParsing="false"/>
+                                    <TextField fx:id="librarySearchField" promptText="Search your library..."
+                                               HBox.hgrow="ALWAYS" styleClass="search-field"/>
+                                </HBox>
+
+                                <!-- Library List -->
+                                <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                                            style="-fx-background: #1a1d2e; -fx-background-color: #1a1d2e;">
+                                    <content>
+                                        <VBox fx:id="libraryResults" spacing="8.0">
+                                            <padding>
+                                                <Insets top="5" right="5" bottom="5" left="5"/>
+                                            </padding>
+                                        </VBox>
+                                    </content>
+                                </ScrollPane>
+
+                            </VBox>
+
+                            <!-- Right: Quick Stats -->
+                            <VBox prefWidth="240.0" spacing="15.0"
+                                  style="-fx-background-color: #1e2130; -fx-background-radius: 10; -fx-padding: 15;">
+
+                                <Label text="Quick Stats" styleClass="section-label"/>
+
+                                <!-- Total Shows -->
+                                <HBox spacing="10.0" alignment="CENTER_LEFT"
+                                      style="-fx-background-color: #252840; -fx-background-radius: 8; -fx-padding: 10;">
+                                    <Label text="📺" style="-fx-font-size: 18px;"/>
+                                    <VBox>
+                                        <Label text="Total Shows" style="-fx-text-fill: #8b8fa8; -fx-font-size: 11px;"/>
+                                        <Label fx:id="totalShowsLabel" text="0"
+                                               style="-fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold;"/>
+                                    </VBox>
+                                </HBox>
+                                <VBox fx:id="chartContainer" prefHeight="150"/>
+
+                                <!-- Episodes Watched -->
+                                <HBox spacing="10.0" alignment="CENTER_LEFT"
+                                      style="-fx-background-color: #252840; -fx-background-radius: 8; -fx-padding: 10;">
+                                    <Label text="🎬" style="-fx-font-size: 18px;"/>
+                                    <VBox>
+                                        <Label text="Episodes Watched" style="-fx-text-fill: #8b8fa8; -fx-font-size: 11px;"/>
+                                        <Label fx:id="totalEpisodesLabel" text="0"
+                                               style="-fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold;"/>
+                                    </VBox>
+                                </HBox>
+
+                                <!-- Mean Score -->
+                                <HBox spacing="10.0" alignment="CENTER_LEFT"
+                                      style="-fx-background-color: #252840; -fx-background-radius: 8; -fx-padding: 10;">
+                                    <Label text="⭐" style="-fx-font-size: 18px;"/>
+                                    <VBox>
+                                        <Label text="Mean Score" style="-fx-text-fill: #8b8fa8; -fx-font-size: 11px;"/>
+                                        <Label fx:id="meanScoreLabel" text="0.0"
+                                               style="-fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold;"/>
+                                    </VBox>
+                                </HBox>
+
+                            </VBox>
+
+                        </HBox>
+                    </children>
+                </AnchorPane>
+
+            </children>
+        </StackPane>
+    </center>
+
+</BorderPane>

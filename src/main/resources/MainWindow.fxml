@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #0f1117;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zuhair.animetracker.controllers.MainController">
+   <left>
+      <VBox fx:id="sidebar" prefHeight="400.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #0f1117;" stylesheets="@css/style.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label styleClass="app-title" text="AniTrack" />
+            <Button fx:id="dashboardBtn" mnemonicParsing="false" onAction="#dashboardBtnHandler" styleClass="sidebar-btn" text="Dashboard" />
+            <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#searchBtnHandler" styleClass="sidebar-btn" text="Search" />
+            <Button fx:id="libraryBtn" mnemonicParsing="false" onAction="#libraryBtnHandler" styleClass="sidebar-btn" text="Library" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding></VBox>
+   </left>
+   <center>
+      <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #1a1d2e;" stylesheets="@css/style.css" BorderPane.alignment="CENTER">
+         <children>
+             <AnchorPane fx:id="dashboardPane" style="-fx-background-color: #1a1d2e;">
+                 <children>
+                     <HBox spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                         <children>
+                             <ScrollPane fx:id="dashboardScroll" fitToWidth="true" HBox.hgrow="ALWAYS">
+                                 <content>
+                                     <VBox spacing="10.0">
+                                         <children>
+                                             <HBox fx:id="bannerBox" minHeight="180.0" prefHeight="180.0" />
+                                             <Label styleClass="section-label" text="Continue Watching" />
+                                             <FlowPane fx:id="continueWatchingPane" hgap="10.0" vgap="10.0" />
+                                         </children>
+                                         <padding>
+                                             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                         </padding>
+                                     </VBox>
+                                 </content>
+                             </ScrollPane>
+                             <VBox prefWidth="280.0" spacing="10.0" style="-fx-background-color: #1e2130; -fx-background-radius: 10; -fx-padding: 10;">
+                                 <children>
+                                     <Label styleClass="section-label" text="Top Airing" />
+                                     <VBox fx:id="topAiringPane" spacing="8.0" VBox.vgrow="ALWAYS" />
+                                 </children>
+                             </VBox>
+                         </children>
+                         <padding>
+                             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                         </padding>
+                     </HBox>
+                 </children>
+             </AnchorPane>
+            <AnchorPane fx:id="searchPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1a1d2e;" visible="false">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox prefHeight="50.0" prefWidth="205.0" spacing="10.0">
+                           <children>
+                              <TextField fx:id="searchField" promptText="Search" styleClass="search-field" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="searchFieldBtn" mnemonicParsing="false" onAction="#searchResults" styleClass="tab-btn" text="Search" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                           <content>
+                              <FlowPane fx:id="searchResults" hgap="10.0" maxWidth="1.7976931348623157E308" prefHeight="200.0" vgap="10.0">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding></FlowPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="libraryPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1a1d2e;" visible="false">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="planToWatchBtn" mnemonicParsing="false" onAction="#planToWatchHandler" styleClass="tab-btn" text="Plan To Watch" />
+                              <Button fx:id="watchingBtn" mnemonicParsing="false" onAction="#watchingHandler" styleClass="tab-btn" text="Watching" />
+                              <Button fx:id="completedBtn" mnemonicParsing="false" onAction="#completedHandler" styleClass="tab-btn" text="Completed" />
+                              <Button fx:id="droppedBtn" mnemonicParsing="false" onAction="#droppedHandler" styleClass="tab-btn" text="Dropped" />
+                           </children>
+                        </HBox>
+                        <ScrollPane fitToWidth="true" maxWidth="1.7976931348623157E308" prefHeight="200.0" VBox.vgrow="ALWAYS">
+                           <content>
+                              <FlowPane fx:id="libraryResults" hgap="10.0" prefHeight="200.0" vgap="10.0">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding></FlowPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children></StackPane>
+   </center>
+</BorderPane>

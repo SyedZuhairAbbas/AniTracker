@@ -1,0 +1,11 @@
+com\zuhair\animetracker\controllers\MainController$1.class
+com\zuhair\animetracker\Launcher.class
+com\zuhair\animetracker\database\DatabaseHelper.class
+com\zuhair\animetracker\models\Watchlist.class
+com\zuhair\animetracker\controllers\MainController$2.class
+com\zuhair\animetracker\controllers\MainController.class
+com\zuhair\animetracker\database\DatabaseConnection.class
+com\zuhair\animetracker\models\Anime.class
+com\zuhair\animetracker\controllers\MainController$3.class
+com\zuhair\animetracker\api\JikanApi.class
+com\zuhair\animetracker\App.class
